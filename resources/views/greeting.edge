@@ -94,11 +94,15 @@
       {{--  variable in edge  --}}
       {{--  @set('name', 'Jhohn Doe')  --}}
 
-      @if(name)
+      {{--  @if(name)
         <h1>Hello {{ name }}, hope you are doing well :)  </h1>
       @else
         <h1>Hey there, hope you are doing well :)  </h1>
-      @endif
+      @endif  --}}
+
+      <p>
+        {{ name ?  `Hello ${ name }, hope you are doing well :)` : `Hey there, hope you are doing well :)` }}
+      </p>
 
       
 
