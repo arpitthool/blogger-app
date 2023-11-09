@@ -11,10 +11,14 @@
             
                 <div class="field has-addons">
                     <div class="control is-expanded">
-                        <input type="text" name="title" class="input" placeholder="My Blog Title">
+                        <input type="text" name="title" 
+                            class="input {{  flashMessages.has('errors.title') ? 'is-danger' : '' }} " 
+                            placeholder="My Blog Title">
                         <br>
                         <br>
-                        <textarea type="text" style="width: 400px; height: 200px;" name="content" class="input" placeholder="My Blog Content"></textarea>
+                        <textarea type="text" style="width: 400px; height: 200px;" name="content" 
+                            class="input {{  flashMessages.has('errors.content') ? 'is-danger' : '' }}" 
+                            placeholder="My Blog Content"></textarea>
                         <br>
                         <br>
                         
@@ -23,6 +27,21 @@
                         <button type="submit" class="button is-link">Add Blog</button>
                     </div>
                 </div>
+
+                {{--  if there are any validation errors in title field then show error  --}}
+                @if( flashMessages.has('errors.title'))
+                  <p class="help is-danger">
+                    {{ flashMessages.get('errors.title') }}
+                  </p>
+                @endif
+
+                {{--  if there are any validation errors in content field then show error  --}}
+                @if( flashMessages.has('errors.content'))
+                  <p class="help is-danger">
+                    {{ flashMessages.get('errors.content') }}
+                  </p>
+                @endif
+
             </form>
         </div>
     </div>
