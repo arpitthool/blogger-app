@@ -1,56 +1,93 @@
 @layout('layouts/app')
 
 @section('content')
-  <div class="columns">
-    <div class="coulmn is-three-fifths is-offset-one-fifth">
-        <div class="box">
-            <form action="{{ route('storeBlog') }}" method="post">
+    <div class="columns">
+        <div class="coulmn is-three-fifths is-offset-one-fifth">
+            <div class="box">
+                <form action="{{ route('storeBlog') }}" method="post">
 
-                {{--  to avoid 'E_BAD_CSRF_TOKEN: Invalid CSRF Token' Error --}}
-                {{ csrfField() }}
-            
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <input type="text" name="title" 
-                            class="input {{  flashMessages.has('errors.title') ? 'is-danger' : '' }} " 
-                            placeholder="My Blog Title"
-                            value="{{ flashMessages.has('title') ? flashMessages.get('title') : '' }}">
-                        <br>
-                        <br>
-                        <textarea type="text" style="width: 400px; height: 200px;" name="content" 
-                            class="input {{  flashMessages.has('errors.content') ? 'is-danger' : '' }}" 
-                            placeholder="My Blog Content">{{ flashMessages.has('content') ? flashMessages.get('content') : '' }}</textarea>
-                        <br>
-                        <br>
-                        
-                    {{--  </div>  --}}
-                    {{--  <div class="control">  --}}
-                        <button type="submit" class="button is-link">Add Blog</button>
+                    {{--  to avoid 'E_BAD_CSRF_TOKEN: Invalid CSRF Token' Error --}}
+                    {{ csrfField() }}
+                
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="text" name="title" 
+                                class="input {{  flashMessages.has('errors.title') ? 'is-danger' : '' }} " 
+                                placeholder="My Blog Title"
+                                value="{{ flashMessages.has('title') ? flashMessages.get('title') : '' }}">
+                            <br>
+                            <br>
+                            <textarea type="text" style="height: 200px;" name="content" 
+                                class="input {{  flashMessages.has('errors.content') ? 'is-danger' : '' }}" 
+                                placeholder="My Blog Content">{{ flashMessages.has('content') ? flashMessages.get('content') : '' }}</textarea>
+                            <br>
+                            <br>
+                            
+                        {{--  </div>  --}}
+                        {{--  <div class="control">  --}}
+                            <button type="submit" class="button is-link">Add Blog</button>
+                        </div>
+                    </div>
+
+                    {{--  if there are any validation errors in title field then show error  --}}
+                    @if( flashMessages.has('errors.title'))
+                    <p class="help is-danger">
+                        {{ flashMessages.get('errors.title') }}
+                    </p>
+                    @endif
+
+                    {{--  if there are any validation errors in content field then show error  --}}
+                    @if( flashMessages.has('errors.content'))
+                    <p class="help is-danger">
+                        {{ flashMessages.get('errors.content') }}
+                    </p>
+                    @endif
+
+                    @if(flashMessages.has('notification'))
+                        <div class="notification is-success">
+                            {{ flashMessages.get('notification') }}
+                        </div>
+                    @endif
+
+                    
+
+                </form>
+            </div>
+
+            {{--  diaplay existing blogs  --}}
+            <div class="container">
+                <div class="box">
+                    <div class="columns is-multiline">
+
+                        {{--  iterate over blogs  --}}
+                        @each(blog in blogs)
+                        <div class="column">
+                            <div class="card">
+                                <header class="card-header">
+                                    <p class="card-header-title">
+                                        {{ blog.title }}
+                                    </p>
+                                </header>
+                                <div class="card-content">
+                                    <div class="content">
+                                        {{ blog.content }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{--  if no blogs exist : show message  --}}
+                        @else
+                        <div class="column">
+                            <div class="notification is-warning">
+                                No blogs yet!
+                            </div>
+                        </div>
+                        @endeach
+
                     </div>
                 </div>
-
-                {{--  if there are any validation errors in title field then show error  --}}
-                @if( flashMessages.has('errors.title'))
-                  <p class="help is-danger">
-                    {{ flashMessages.get('errors.title') }}
-                  </p>
-                @endif
-
-                {{--  if there are any validation errors in content field then show error  --}}
-                @if( flashMessages.has('errors.content'))
-                  <p class="help is-danger">
-                    {{ flashMessages.get('errors.content') }}
-                  </p>
-                @endif
-
-            </form>
+            </div>
         </div>
-
-        @if(flashMessages.has('notification'))
-          <div class="notification is-success">
-            {{ flashMessages.get('notification') }}
-          </div>
-        @endif
     </div>
-  </div>
 @endsection
