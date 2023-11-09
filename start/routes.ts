@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+/*
 // route accepts 2 arguments : 1. URI pattern 2. route handler
 // a route handler can either be inline or using a controller
 
@@ -60,3 +61,16 @@ Route.get('/hello/:name', async ({params}) => {
 Route.get('/greeting/:name?', async ({params}) => {
   return params.name ? `Greetings ${params.name}! hope your day is going well :)` : `Greetings user! hope your day is going well :)`
 })
+
+*/
+
+// Inline route handlers are a bit messy and it is recommend to use a Controllers to implement route handler
+Route.get('/', 'PagesController.home')
+
+Route.get('/about', 'PagesController.about')
+
+Route.get('/contact', 'PagesController.contact')
+
+Route.get('/hello/:name', 'PagesController.hello')
+
+Route.get('greeting/:name?', 'PagesController.greeting')
