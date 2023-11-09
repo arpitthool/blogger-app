@@ -18,12 +18,17 @@ This is a web Blog app built using AdoniJS TyperScript
 # install lucid module
  npm install @adonisjs/lucid
 
-# setup lucid
+# setup lucid (lucid is AdoniJS ORM which is implementaion of Active Record Pattern. Lucid is 'Model' in the MVC pattern.Lucid being an ORM it makes database interactions easy and transparent. It is also used to define table relationships without writing a single SQL query )
  node ace invoke @adonisjs/lucid
 
 # create migration (migrations are documented database mutations, created throughout our apps life-cycle. These can be rolled back)
  node ace make:migration MyExampleMigration
+
+# run migrations
+ node ace migration:run
  
+
+=====
 ## Install and setup PostgreSQL for Ubuntu
 
 # Install postgresql
@@ -50,3 +55,7 @@ This is a web Blog app built using AdoniJS TyperScript
 
 # grant db permissions to the user
  postgres=# grant all privileges on database mydb to myuser;
+=====
+
+# Make Lucid Model (A A Model represents a data table)
+ node ace make:Model MY_MODEL
