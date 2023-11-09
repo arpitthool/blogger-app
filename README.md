@@ -27,6 +27,8 @@ This is a web Blog app built using AdoniJS TyperScript
 # run migrations
  node ace migration:run
  
+# run fresh migration : recreate the database from scratch and migrate
+ node ace migration:fresh
 
 =====
 ## Install and setup PostgreSQL for Ubuntu

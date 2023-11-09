@@ -7,7 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary() // we want this column to be the primary key
       table.string('title').notNullable() // blog title
-      table.string('content').notNullable() // blog content
+      table.string('content', 2000 ).notNullable() // blog content
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
