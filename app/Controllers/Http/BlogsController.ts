@@ -13,7 +13,7 @@ export default class BlogsController {
     /**
      * store : method to vlaidate Blog data and store Blog into database OR show appropriate errors
      */
-    public async store({request, response} : HttpContextContract) {
+    public async store({request, response, session} : HttpContextContract) {
 
         // max character length for blog title
         const blogTitleMaxLength = 255
@@ -40,7 +40,7 @@ export default class BlogsController {
                 'title.required'    : 'Please enter blog title',
                 'title.maxLength'   : `Blog title cannot exceed ${ blogTitleMaxLength } characters`,
                 'content.required'  : 'Please enter blog content',
-                'content.maxLength'   : `Blog content cannot exceed ${ blogContentMaxLength } characters`,
+                'content.maxLength' : `Blog content cannot exceed ${ blogContentMaxLength } characters`,
             },
         })
 
@@ -50,6 +50,11 @@ export default class BlogsController {
             title   : validatedData.title,
             content : validatedData.content
         })
+
+        // send notification to user that Blog was stored
+        // format for flash method : flash( 'notification', 'my notification text' )
+        // view can access the notiification using 'flashMessages' object
+        session.flash('notification', 'Blog added!')
 
         // redirect to the previous page
         return response.redirect('back')
