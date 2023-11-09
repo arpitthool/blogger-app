@@ -20,6 +20,30 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async ({ view }) => {
+// route accepts 2 arguments : 1. URI pattern 2. route handler
+// a route handler can either be inline or using a controller
+
+// All 1,2 & 3 achieve the same result
+
+// 1
+// Route.on('/').render('welcome')
+
+// 2. route inline handler where we get the http-context
+// Route.get('/', async (context) => { 
+//   return context.view.render('welcome')
+// })
+
+// 3. route inline handler by destructuring the context
+Route.get('/', async ({ view }) => { 
   return view.render('welcome')
+})
+
+// About Rpute
+Route.get('/about',async () => {
+  return 'This is the about page'
+})
+
+// About Rpute
+Route.get('/contact',async () => {
+  return 'This is the contact page'
 })
