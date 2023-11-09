@@ -13,12 +13,15 @@
                     <div class="control is-expanded">
                         <input type="text" name="title" 
                             class="input {{  flashMessages.has('errors.title') ? 'is-danger' : '' }} " 
-                            placeholder="My Blog Title">
+                            placeholder="My Blog Title"
+                            value="{{ flashMessages.has('title') ? flashMessages.get('title') : '' }}">
                         <br>
                         <br>
                         <textarea type="text" style="width: 400px; height: 200px;" name="content" 
                             class="input {{  flashMessages.has('errors.content') ? 'is-danger' : '' }}" 
-                            placeholder="My Blog Content"></textarea>
+                            placeholder="My Blog Content">
+                                {{ flashMessages.has('content') ? flashMessages.get('content') : '' }}
+                            </textarea>
                         <br>
                         <br>
                         
