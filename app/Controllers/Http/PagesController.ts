@@ -7,7 +7,7 @@ export default class PagesController {
 
     // method to render welcome page
     public home ( { view } : HttpContextContract ) {
-        return view.render('welcome')
+        return view.render('blogs/index')
     }
 
     // method to render about page
