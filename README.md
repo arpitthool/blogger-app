@@ -20,3 +20,7 @@ This is a web Blog app built using AdoniJS TyperScript
 
 # setup lucid
  node ace invoke @adonisjs/lucid
+
+# create migration (migrations are documented database mutations, created throughout our apps life-cycle. These can be rolled back)
+ node ace make:migration MyExampleMigration
+ 
