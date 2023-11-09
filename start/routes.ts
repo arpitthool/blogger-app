@@ -71,7 +71,7 @@ Route.get('/greeting/:name?', async ({params}) => {
 // this makes it easy to refer to the route from the view page : {{ route('ROUTE_NAME') }}
 // and saves time as we would not need to change the link text every time we decide to modify the route text
 
-Route.get('/', 'PagesController.home').as('home')
+// Route.get('/', 'PagesController.home').as('home')
 
 Route.get('/about', 'PagesController.about').as('about')
 
@@ -80,3 +80,9 @@ Route.get('/contact', 'PagesController.contact').as('contact')
 Route.get('/hello/:name', 'PagesController.hello').as('hello')
 
 Route.get('greeting/:name?', 'PagesController.greeting').as('greeting')
+
+// Blog routes
+
+Route.get('/', 'BlogsController.index').as('home')
+
+Route.post('/blogs', 'BlogsController.store').as('storeBlog')

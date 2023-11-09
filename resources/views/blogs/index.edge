@@ -1,5 +1,30 @@
 @layout('layouts/app')
 
 @section('content')
-  <h1>Blogs</h1>
+  <div class="columns">
+    <div class="coulmn is-three-fifths is-offset-one-fifth">
+        <div class="box">
+            <form action="{{ route('storeBlog') }}" method="post">
+
+                {{--  to avoid 'E_BAD_CSRF_TOKEN: Invalid CSRF Token' Error --}}
+                {{ csrfField() }}
+            
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input type="text" name="title" class="input" placeholder="My Blog Title">
+                        <br>
+                        <br>
+                        <textarea type="text" style="width: 400px; height: 200px;" name="content" class="input" placeholder="My Blog Content"></textarea>
+                        <br>
+                        <br>
+                        
+                    {{--  </div>  --}}
+                    {{--  <div class="control">  --}}
+                        <button type="submit" class="button is-link">Add Blog</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
 @endsection

@@ -48,14 +48,27 @@ This is a web Blog app built using AdoniJS TyperScript
  psql
 
 # create database
- postgres=# create database mydb;
+ create database DB_NAME;
 
 # create user and set password
- postgres=# create user myuser with encrypted password 'mypass';
+ create user myuser with encrypted password 'mypass';
 
 # grant db permissions to the user
- postgres=# grant all privileges on database mydb to myuser;
+  all privileges on database mydb to myuser;
+
+# select a db
+ \c DB_NAME
+
+# show table content
+ select * from TABLE_NAME
 =====
 
 # Make Lucid Model (A A Model represents a data table)
  node ace make:Model MY_MODEL
+
+
+# install shield to prevent app from Cross Site Request Forgery (CSRF) attack 
+ npm install @adonisjs/shield
+
+# configure shield
+ node ace invoke @adonisjs/shield
