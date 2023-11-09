@@ -14,3 +14,9 @@ This is a web Blog app built using AdoniJS TyperScript
  
 # Create a controller
  node ace make:controller MyExampleController
+
+# install lucid module
+ npm install @adonisjs/lucid
+
+# setup lucid
+ node ace invoke @adonisjs/lucid
