@@ -19,9 +19,7 @@
                         <br>
                         <textarea type="text" style="width: 400px; height: 200px;" name="content" 
                             class="input {{  flashMessages.has('errors.content') ? 'is-danger' : '' }}" 
-                            placeholder="My Blog Content">
-                                {{ flashMessages.has('content') ? flashMessages.get('content') : '' }}
-                            </textarea>
+                            placeholder="My Blog Content">{{ flashMessages.has('content') ? flashMessages.get('content') : '' }}</textarea>
                         <br>
                         <br>
                         
@@ -47,6 +45,12 @@
 
             </form>
         </div>
+
+        @if(flashMessages.has('notification'))
+          <div class="notification is-success">
+            {{ flashMessages.get('notification') }}
+          </div>
+        @endif
     </div>
   </div>
 @endsection
