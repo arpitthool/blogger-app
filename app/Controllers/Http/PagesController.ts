@@ -33,8 +33,11 @@ export default class PagesController {
     }
 
     // method to render hello page using the 'name' param passed
-    public hello ( { params } : HttpContextContract ) {
-        return `Hello ${params.name}, hope your day is going well :)`
+    // public hello ( { params } : HttpContextContract ) {
+    //     return `Hello ${params.name}, hope your day is going well :)`
+    // }
+    public hello ( { view } : HttpContextContract ) {
+        return view.render('hello')
     }
 
     // method to render greeting page using the 'name' param passed
