@@ -86,10 +86,30 @@
 
   <main>
     <div>
-      <h1 class="title"> Contact Page </h1>
+      <h1 class="title"> Greeting Page </h1>
       <p class="subtitle">
-        This is the contact page
+        Welcome to the Greetings Page!
       </p>
+
+      {{--  variable in edge  --}}
+      {{--  @set('name', 'Jhohn Doe')  --}}
+
+      @if(name)
+        <h1>Hello {{ name }}, hope you are doing well :)  </h1>
+      @else
+        <h1>Hey there, hope you are doing well :)  </h1>
+      @endif
+
+      
+
+      {{--  we can instruct edge to not process the contents inside double curly braces by adding @ prefix  --}}
+      {{--  <h1>@{{ name }}</h1>  --}}
+
+      {{--  the output of double curly braces is excaped to avoid XSS attacks  --}}
+      {{--  {{ '<h1>This will be escaped</h1>' }}  --}}
+
+      {{--  the output of triple curly braces is not excaped   --}}
+      {{--  {{{ '<h1>This will not be escaped</h1>' }}}  --}}
 
       <ul>
         <li>
@@ -108,7 +128,7 @@
           <a href="{{ route('greeting') }}">Greeting</a>
         </li>
       </ul>
-      
+
     </div>
   </main>
 </body>
