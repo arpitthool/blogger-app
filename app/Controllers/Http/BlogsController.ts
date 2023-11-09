@@ -6,12 +6,18 @@ export default class BlogsController {
     /**
      * index method to fetch blogs
     */
-    public index({view} : HttpContextContract) {
-        return view.render('blogs/index')
+    public async index({view} : HttpContextContract) {
+        // fecth all blogs
+        const blogs = await Blog.all()
+
+        // pass blogs to view
+        return view.render('blogs/index', { blogs })
     }
 
     /**
      * store : method to vlaidate Blog data and store Blog into database OR show appropriate errors
+     * 
+     * NOTE : if we are performing an async operation in method then we add async to method definition
      */
     public async store({request, response, session} : HttpContextContract) {
 
