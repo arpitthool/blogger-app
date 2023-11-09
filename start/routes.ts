@@ -47,3 +47,16 @@ Route.get('/about',async () => {
 Route.get('/contact',async () => {
   return 'This is the contact page'
 })
+
+// Dynamic Routes : take dynamic values in the form of parameters
+
+// here we destructed the context to get params
+// here the name parameter is compulsory and if not provided the url will result in 404 error
+Route.get('/hello/:name', async ({params}) => {
+  return `Hello ${params.name}, hope your day is going well :)`
+})
+
+// route with optional parameter : notice the '?' in the route pattern
+Route.get('/greeting/:name?', async ({params}) => {
+  return params.name ? `Greetings ${params.name}! hope your day is going well :)` : `Greetings user! hope your day is going well :)`
+})
