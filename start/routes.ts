@@ -65,6 +65,7 @@ Route.get('/greeting/:name?', async ({params}) => {
 */
 
 // Inline route handlers are a bit messy and it is recommend to use a Controllers to implement route handler
+// Route handler formate : 'CONTROLLER_NAME.METHOD_NAME'
 Route.get('/', 'PagesController.home')
 
 Route.get('/about', 'PagesController.about')

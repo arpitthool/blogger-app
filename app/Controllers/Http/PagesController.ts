@@ -11,13 +11,25 @@ export default class PagesController {
     }
 
     // method to render about page
+    /*
     public about () {
         return 'This is the about page'
     }
+    */
+    // Render views instead of returning string
+    public about ( { view } : HttpContextContract ) {
+        return view.render('about')
+    }
 
     // method to render contact page
+    /*
     public contact () {
         return 'This is the contact page'
+    }
+    */
+    // Render views instead of returning string
+    public contact ( { view } : HttpContextContract) {
+        return view.render('contact')
     }
 
     // method to render hello page using the 'name' param passed
