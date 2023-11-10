@@ -81,7 +81,9 @@ Route.get('/hello/:name', 'PagesController.hello').as('hello')
 
 Route.get('greeting/:name?', 'PagesController.greeting').as('greeting')
 
-// Blog routes
+/*
+Blog routes
+*/
 
 // route to get all blogs
 Route.get('/', 'BlogsController.index').as('home')
@@ -91,3 +93,13 @@ Route.post('/blog', 'BlogsController.store').as('storeBlog')
 
 // route to delete blog with specified id
 Route.delete('/blog/:id', 'BlogsController.deleteBlog')
+
+/*
+Auth routes
+*/
+
+// route to get register page
+Route.get('/register', 'AuthController.showRegister')
+
+// route to register user
+Route.post('/register', 'AuthController.register')
