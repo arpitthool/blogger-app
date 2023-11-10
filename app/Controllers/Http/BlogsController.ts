@@ -83,4 +83,13 @@ export default class BlogsController {
         // redirect to previous view
         return response.redirect('back')
     }
+
+    /**
+     * create method to render create blog page
+    */
+    public create({view} : HttpContextContract) {
+        
+        // render create blog view
+        return view.render('blogs/create')
+    }
 }
