@@ -32,6 +32,10 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', 'BlogsController.index').as('home')
 
 Route.group(() => {
+
+  // route to get user's blogs
+  Route.get('/myBlogs', 'BlogsController.userBlogs')
+
   // route to get page to create blog
   Route.get('/create', 'BlogsController.create').as('createBlog')
 
