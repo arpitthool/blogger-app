@@ -83,16 +83,20 @@ export default class BlogsController {
     /**
      * deleteBlog : method to delete blog object based on id parameter
      */
-    public async deleteBlog({params, response, session} : HttpContextContract ) {
+    public async deleteBlog({params, response, session, auth} : HttpContextContract ) {
 
         // fecth blog object using id from params
         const blog = await Blog.findOrFail(params.id)
 
-        // delete blog
-        await blog.delete()
+        // check if blog belongs to the logged in user
+        if(auth.user?.id == blog.userId) {
 
-        // send deleteion successful notification
-        session.flash('notification', 'Blog deleted!')
+            // delete blog
+            await blog.delete()
+
+            // send deleteion successful notification
+            session.flash('notification', 'Blog deleted!')
+        }
 
         // redirect to previous view
         return response.redirect('back')
