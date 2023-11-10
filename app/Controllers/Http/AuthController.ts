@@ -50,4 +50,13 @@ export default class AuthController {
         // return view
         return response.redirect('/')
     }
+
+    /**
+     * showLogin : method to render user login page
+    */
+    public showLogin({view} : HttpContextContract) {
+
+        // return login page
+        return view.render('auth/login')
+    }
 }

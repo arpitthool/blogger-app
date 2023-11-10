@@ -103,3 +103,9 @@ Route.get('/register', 'AuthController.showRegister')
 
 // route to register user
 Route.post('/register', 'AuthController.register')
+
+// route to get login page
+Route.get('/login', 'AuthController.showLogin')
+
+// route to extablish login
+Route.post('/login', 'AuthController.login')
