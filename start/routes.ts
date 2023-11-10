@@ -44,14 +44,16 @@ Route.group(() => {
  * AUTH ROUTES
  */
 
-// route to get register page
-Route.get('/register', 'AuthController.showRegister')
+// route to get register page | middleware : guest makes sure that this route is only served to 
+// guest OR users who are not logged in
+Route.get('/register', 'AuthController.showRegister').middleware('guest')
 
 // route to register user
 Route.post('/register', 'AuthController.register')
 
-// route to get login page
-Route.get('/login', 'AuthController.showLogin')
+// route to get login page | middleware : guest makes sure that this route is only served to 
+// guest OR users who are not logged in
+Route.get('/login', 'AuthController.showLogin').middleware('guest')
 
 // route to extablish login
 Route.post('/login', 'AuthController.login')
