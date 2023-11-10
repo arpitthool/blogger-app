@@ -28,10 +28,10 @@ import Route from '@ioc:Adonis/Core/Route'
  * if not authenticated it will redirect to the /login
  */
 
-Route.group(() => {
-  // route to get all blogs
-  Route.get('/', 'BlogsController.index').as('home')
+// route to get all blogs
+Route.get('/', 'BlogsController.index').as('home')
 
+Route.group(() => {
   // route to insert new blog
   Route.post('/blog', 'BlogsController.store').as('storeBlog')
 
