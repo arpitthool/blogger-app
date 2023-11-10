@@ -7,5 +7,27 @@
             <a href="{{ route('contact') }}" class="navbar-item">Contact</a>
             <a href="{{ route('greeting') }}" class="navbar-item">Greeting</a>  --}}
         </div>
+
+        {{--  login menu  --}}
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                {{--  check if user is logged in  --}}
+                @if(auth.isLoggedIn)
+                  <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">{{ auth.user.name }}></a>button
+                    <div class="navbar-dropdown">
+                        <a href="/logout" class="navbar-item">
+                            <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                  </div>
+                @else
+                    <a href="/register" class="navbar-item">Register</a>
+                    <a href="/login" class="navbar-item">Login</a>
+                  
+                @endif
+            </div>
+        </div>
     </div>
 </nav>
