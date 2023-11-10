@@ -13,7 +13,7 @@
 
         {{--  login menu  --}}
         <div class="navbar-menu">
-            {{--  <div class="navbar-end">  --}}
+            <div class="navbar-end">
                 {{--  check if user is logged in  --}}
                 @if(auth.isLoggedIn)
                   <div class="navbar-item has-dropdown is-hoverable">
@@ -40,7 +40,7 @@
                     <a href="/login" class="navbar-item">Login</a>
                   
                 @endif
-            {{--  </div>  --}}
+            </div>
         </div>
     </div>
 </nav>
