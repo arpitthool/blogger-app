@@ -20,7 +20,50 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+/**
+ * BLOG ROUTES GROUP
+ * We grouped these routes to add middleware protection with the named middleware 'auth' 
+ * defined in Middleware/Auth.ts
+ * This will check for authentication on every request made to this group of routes and
+ * if not authenticated it will redirect to the /login
+ */
+
+Route.group(() => {
+  // route to get all blogs
+  Route.get('/', 'BlogsController.index').as('home')
+
+  // route to insert new blog
+  Route.post('/blog', 'BlogsController.store').as('storeBlog')
+
+  // route to delete blog with specified id
+  Route.delete('/blog/:id', 'BlogsController.deleteBlog')
+}).middleware('auth')
+
+
+/**
+ * AUTH ROUTES
+ */
+
+// route to get register page
+Route.get('/register', 'AuthController.showRegister')
+
+// route to register user
+Route.post('/register', 'AuthController.register')
+
+// route to get login page
+Route.get('/login', 'AuthController.showLogin')
+
+// route to extablish login
+Route.post('/login', 'AuthController.login')
+
+// route to logout user
+Route.get('/logout', 'AuthController.logout')
+
+/**
+ * ADONIS JS : A LESSON ON ROUTES
+ */
 /*
+
 // route accepts 2 arguments : 1. URI pattern 2. route handler
 // a route handler can either be inline or using a controller
 
@@ -62,7 +105,6 @@ Route.get('/greeting/:name?', async ({params}) => {
   return params.name ? `Greetings ${params.name}! hope your day is going well :)` : `Greetings user! hope your day is going well :)`
 })
 
-*/
 
 // Inline route handlers are a bit messy and it is recommend to use a Controllers to implement route handler
 // Route handler formate : 'CONTROLLER_NAME.METHOD_NAME'
@@ -80,35 +122,4 @@ Route.get('/contact', 'PagesController.contact').as('contact')
 Route.get('/hello/:name', 'PagesController.hello').as('hello')
 
 Route.get('greeting/:name?', 'PagesController.greeting').as('greeting')
-
-/*
-Blog routes
 */
-
-// route to get all blogs
-Route.get('/', 'BlogsController.index').as('home')
-
-// route to insert new blog
-Route.post('/blog', 'BlogsController.store').as('storeBlog')
-
-// route to delete blog with specified id
-Route.delete('/blog/:id', 'BlogsController.deleteBlog')
-
-/*
-Auth routes
-*/
-
-// route to get register page
-Route.get('/register', 'AuthController.showRegister')
-
-// route to register user
-Route.post('/register', 'AuthController.register')
-
-// route to get login page
-Route.get('/login', 'AuthController.showLogin')
-
-// route to extablish login
-Route.post('/login', 'AuthController.login')
-
-// route to logout user
-Route.get('/logout', 'AuthController.logout')
