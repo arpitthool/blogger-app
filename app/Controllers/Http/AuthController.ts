@@ -13,7 +13,7 @@ export default class AuthController {
     }
 
     /**
-     * register : method to create new user details
+     * register : method to create new user details if the data validation is successful
     */
     public async register({request, auth, response} : HttpContextContract) {
 
@@ -59,4 +59,29 @@ export default class AuthController {
         // return login page
         return view.render('auth/login')
     }
+
+    /**
+     * login : method to handle user login
+     */
+    public async login({auth, request, response, session} : HttpContextContract) {
+        
+        // extract email and password
+        const {email, password} = request.all()
+
+        try {
+            // using email and password try to attempt to login the user
+            await auth.attempt(email, password)
+            
+            // redirect user to home page when log in is successful
+            response.redirect('/')
+
+        } catch (error) {
+            // in case of failure we need to notify user
+            session.flash('notification', 'We could not verify your credentials')
+            
+            // redirect to previous page
+            response.redirect('back')
+        }
+    }
+
 }
