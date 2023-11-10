@@ -69,11 +69,15 @@
                                         {{ blog.title }}
                                     </p>
 
-                                     {{--  here we are using method spoofing  --}}
-                                    <form action="{{ `/blog/${blog.id}?_method=DELETE` }}" method="post">
-                                        {{ csrfField() }}
-                                        <button type="submit" class="button delete is-danger"></button>
-                                    </form>
+                                    {{--  show delete button if user is logged in  --}}
+                                    @if(auth.isLoggedIn)
+                                        {{--  here we are using method spoofing  --}}
+                                        <form action="{{ `/blog/${blog.id}?_method=DELETE` }}" method="post">
+                                            {{ csrfField() }}
+                                            <button type="submit" class="button delete is-danger"></button>
+                                        </form>
+                                    @endif
+                                    
                                 </header>
 
                                 <div class="card-content">
