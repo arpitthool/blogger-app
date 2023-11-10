@@ -74,3 +74,9 @@ This is a web Blog app built using AdoniJS TyperScript
 
 # configure shield
  node ace invoke @adonisjs/shield
+
+## install auth to add login feature
+ npm install @adonisjs/auth
+
+## configure auth module : select lucid, web, model naem : User, create migration : yes
+ node ace invoke @adonisjs/auth
