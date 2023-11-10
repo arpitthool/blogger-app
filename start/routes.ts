@@ -109,3 +109,6 @@ Route.get('/login', 'AuthController.showLogin')
 
 // route to extablish login
 Route.post('/login', 'AuthController.login')
+
+// route to logout user
+Route.get('/logout', 'AuthController.logout')
