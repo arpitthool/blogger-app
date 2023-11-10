@@ -8,7 +8,7 @@ export default class BlogsController {
      * index method to fetch blogs
     */
     public async index({view} : HttpContextContract) {
-        
+
         // fecth all blogs
         const blogs = await Blog.all()
 
@@ -60,7 +60,7 @@ export default class BlogsController {
             userId  : auth.user?.id,
         })
 
-        // ANOTHER WAY OF CREATING BLOG
+        // ANOTHER WAY OF CREATING BLOG : using related(NAME_OF_RELATIONSHIP)
         // await auth.user?.related('blogs').create({
         //     title   : validatedData.title,
         //     content : validatedData.content,
