@@ -1,11 +1,10 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Blog from 'App/Models/Blog'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import authConfig from 'Config/auth'
 
 export default class BlogsController {
     /**
-     * index method to fetch blogs
+     * index method to fetch all blogs
     */
     public async index({view} : HttpContextContract) {
 
@@ -14,6 +13,18 @@ export default class BlogsController {
 
         // pass blogs to view
         return view.render('blogs/index', { blogs })
+    }
+
+    /**
+     * index method to fetch blogs that belong to logged in user
+    */
+    public async userBlogs({view, auth} : HttpContextContract) {
+
+        // fecth all blogs belonging to user
+        const blogs = await auth.user?.related('blogs').query()
+
+        // pass blogs to view
+        return view.render('blogs/userIndex', { blogs })
     }
 
     /**
@@ -59,12 +70,6 @@ export default class BlogsController {
             content : validatedData.content,
             userId  : auth.user?.id,
         })
-
-        // ANOTHER WAY OF CREATING BLOG : using related(NAME_OF_RELATIONSHIP)
-        // await auth.user?.related('blogs').create({
-        //     title   : validatedData.title,
-        //     content : validatedData.content,
-        // })
 
         // send notification to user that Blog was stored
         // format for flash method : flash( 'notification', 'my notification text' )
