@@ -63,11 +63,19 @@
                         @each(blog in blogs)
                         <div class="column">
                             <div class="card">
+
                                 <header class="card-header">
                                     <p class="card-header-title">
                                         {{ blog.title }}
                                     </p>
+
+                                     {{--  here we are using method spoofing  --}}
+                                    <form action="{{ `/blog/${blog.id}?_method=DELETE` }}" method="post">
+                                        {{ csrfField() }}
+                                        <button type="submit" class="button delete is-danger"></button>
+                                    </form>
                                 </header>
+
                                 <div class="card-content">
                                     <div class="content">
                                         {{ blog.content }}

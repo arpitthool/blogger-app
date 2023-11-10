@@ -83,6 +83,11 @@ Route.get('greeting/:name?', 'PagesController.greeting').as('greeting')
 
 // Blog routes
 
+// route to get all blogs
 Route.get('/', 'BlogsController.index').as('home')
 
-Route.post('/blogs', 'BlogsController.store').as('storeBlog')
+// route to insert new blog
+Route.post('/blog', 'BlogsController.store').as('storeBlog')
+
+// route to delete blog with specified id
+Route.delete('/blog/:id', 'BlogsController.deleteBlog')

@@ -65,4 +65,22 @@ export default class BlogsController {
         // redirect to the previous page
         return response.redirect('back')
     }
+    
+    /**
+     * deleteBlog : method to delete blog object based on id parameter
+     */
+    public async deleteBlog({params, response, session} : HttpContextContract ) {
+
+        // fecth blog object using id from params
+        const blog = await Blog.findOrFail(params.id)
+
+        // delete blog
+        await blog.delete()
+
+        // send deleteion successful notification
+        session.flash('notification', 'Blog deleted!')
+
+        // redirect to previous view
+        return response.redirect('back')
+    }
 }
