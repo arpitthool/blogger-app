@@ -43,6 +43,16 @@ This is a web Blog app built using AdoniJS TyperScript
 
     node ace make:middleware
 
+## rollback migration recent migration
+
+    node ace migration:rollback
+
+## rollback first migration
+
+    node ace migration:rollback --batch 0
+
+## NOTE : During development phase it is okay to modify migrations but in Production we would have to create a new migration to modify table or db accordingly
+
 =====
 # Install and setup PostgreSQL for Ubuntu
 

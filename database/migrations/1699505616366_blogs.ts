@@ -6,6 +6,7 @@ export default class extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary() // we want this column to be the primary key
+      table.integer('user_id').unsigned().notNullable() // user id of blog author
       table.string('title').notNullable() // blog title
       table.string('content', 2000 ).notNullable() // blog content
       /**
