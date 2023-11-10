@@ -14,7 +14,7 @@
                 {{--  check if user is logged in  --}}
                 @if(auth.isLoggedIn)
                   <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">{{ auth.user.name }}></a>button
+                    <a class="navbar-link">{{ auth.user.name }}</a>
                     <div class="navbar-dropdown">
                         <a href="/logout" class="navbar-item">
                             <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
