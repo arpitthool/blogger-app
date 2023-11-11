@@ -1,5 +1,34 @@
 # blogger-app
-This is a web Blog app built using AdoniJS TyperScript
+
+This is a web Blog app built using AdoniJS TyperScript. Edge templates are used UI and the app uses PostgreSQL database.
+
+# Setup and configure the app
+
+## Install modules
+
+    npm install
+
+## create .env file in the root folder and configure it according to your database credentials
+
+    PORT=3333
+    HOST=0.0.0.0
+    NODE_ENV=development
+    APP_KEY=MY_APP_KEY
+    DRIVE_DISK=local
+    SESSION_DRIVER=cookie
+    CACHE_VIEWS=false
+    DB_CONNECTION=pg
+    PG_HOST=127.0.0.1
+    PG_PORT=5432
+    PG_USER=lucid
+    PG_PASSWORD=password
+    PG_DB_NAME=blogs
+
+## start app
+
+    node ace serve
+
+-------
 
 # AdoniJS useful commands
 
@@ -53,7 +82,7 @@ This is a web Blog app built using AdoniJS TyperScript
 
 ## NOTE : During development phase it is okay to modify migrations but in Production we would have to create a new migration to modify table or db accordingly
 
-=====
+-------
 # Install and setup PostgreSQL for Ubuntu
 
 ## Install postgresql
@@ -88,7 +117,7 @@ This is a web Blog app built using AdoniJS TyperScript
 
 ## grant db permissions to the user
   
-    all privileges on database mydb to myuser;
+    grant all privileges on database mydb to myuser;
 
 ## select a db
  
@@ -97,7 +126,7 @@ This is a web Blog app built using AdoniJS TyperScript
 ## show table content
  
     select * from TABLE_NAME
-=====
+-------
 
 ## Make Lucid Model (A A Model represents a data table)
  
