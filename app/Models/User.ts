@@ -2,6 +2,7 @@ import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Blog from './Blog'
+import Like from './Like'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -36,4 +37,8 @@ export default class User extends BaseModel {
   // the inverse of this relationship should be defined in Blog
   @hasMany(() => Blog)
   public blogs : HasMany<typeof Blog>
+
+  // RELATIONSHIP : one-to-many -> one user has many likes
+  @hasMany(() => Like)
+  public likes : HasMany<typeof Like>
 }
