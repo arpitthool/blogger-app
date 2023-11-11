@@ -33,6 +33,15 @@
                                         {{ blog.content }}
                                     </div>
                                 </div>
+
+                                {{--  card footer showing total likes on blog, like button and dislike button  --}}
+                                <footer class="card-footer">
+                                        
+                                        <span class="card-footer-item"> &#128525; {{ blog.totalLikes }}</span>
+                                        <a class="card-footer-item" href="/likeBlog/{{ blog.id }}">&#128077;</a>
+                                        <a class="card-footer-item" href="/dislikeBlog/{{ blog.id }}">&#128078;</a>
+                                    
+                                </footer>
                             </div>
                         </div>
 
