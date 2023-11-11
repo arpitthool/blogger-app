@@ -44,6 +44,12 @@ Route.group(() => {
 
   // route to delete blog with specified id
   Route.delete('/blog/:id', 'BlogsController.deleteBlog')
+
+  // route to like blog
+  Route.get('/likeBlog/:id', 'LikesController.like')
+
+  // route to like blog
+  Route.get('/dislikeBlog/:id', 'LikesController.dislike')
 }).middleware('auth')
 
 
