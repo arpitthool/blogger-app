@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.integer('user_id').unsigned().notNullable() // user id of blog author
       table.string('title').notNullable() // blog title
       table.string('content', 2000 ).notNullable() // blog content
+      table.integer('total_likes').defaultTo(0) // no of likes
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
