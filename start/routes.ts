@@ -52,6 +52,8 @@ Route.group(() => {
   Route.get('/dislikeBlog/:id', 'LikesController.dislike')
 }).middleware('auth')
 
+// route to get blog with specified id
+Route.get('/blog/:id', 'BlogsController.getBlog')
 
 /**
  * AUTH ROUTES
