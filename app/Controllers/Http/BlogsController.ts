@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Blog from 'App/Models/Blog'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import User from 'App/Models/User'
 
 export default class BlogsController {
     /**
@@ -109,5 +110,20 @@ export default class BlogsController {
         
         // render create blog view
         return view.render('blogs/create')
+    }
+
+    /**
+     * getBlog : method to view a single blog with additional details
+     */
+    public async getBlog({params, view} : HttpContextContract ) {
+
+        // fecth blog object using id from params
+        const blog = await Blog.findOrFail(params.id)
+
+        // fetch blog author
+        const user = await User.findOrFail(blog.userId)
+
+        // render detailed view for blog
+        return view.render('blogs/view', {blog, user})
     }
 }
