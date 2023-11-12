@@ -24,6 +24,14 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
     PG_PASSWORD=password
     PG_DB_NAME=blogs
 
+## run migrations
+
+    node ace migration:run
+
+## seed dummy data into databse (OPTIONAL)
+
+    node ace db:seed
+
 ## start app
 
     node ace serve
@@ -79,6 +87,18 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 ## rollback first migration
 
     node ace migration:rollback --batch 0
+
+## make seeder
+
+    node ace make:seeder MY_SEEDER
+
+## run all seeders
+
+    node ace db:seed
+
+## run a particular seeder by running below command and selecting the desired seeder
+
+    node ace db:seed -i
 
 ## NOTE : During development phase it is okay to modify migrations but in Production we would have to create a new migration to modify table or db accordingly
 
