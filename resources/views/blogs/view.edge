@@ -1,0 +1,38 @@
+@layout('layouts/app')
+
+@section('content')
+    <div class="card">
+
+        <header class="card-header">
+            <p class="card-header-title">
+                {{ blog.title }}
+            </p>
+
+        </header>
+
+        <div class="card-content">
+            <div class="content">
+                {{ blog.content }}
+            </div>
+        </div>
+
+        <div class="card-content">
+            <div class="content">
+                Created at : {{ blog.createdAt }}
+            </div>
+            <div class="content">
+                Blog author : {{ user.name }}
+            </div>
+        </div>
+
+        {{--  card footer showing total likes on blog, like button and dislike button  --}}
+        <footer class="card-footer">
+                
+                <span class="card-footer-item"> &#128525; {{ blog.totalLikes }}</span>
+                <a class="card-footer-item" href="/likeBlog/{{ blog.id }}">&#128077;</a>
+                <a class="card-footer-item" href="/dislikeBlog/{{ blog.id }}">&#128078;</a>
+            
+        </footer>
+
+    </div>
+@endsection
