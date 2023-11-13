@@ -2,16 +2,17 @@
 <script>
     import { onMount } from 'svelte';
     import axios from 'axios';
-  
-    /**
+    const hostUrl = import.meta.env.VITE_HOST;
+
+        /**
      * @type {any[]}
      */
     let blogs = [];
   
     onMount(async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:3333/api');
-        console.log(response.data)
+        const url = hostUrl + '/api'
+        const response = await axios.get(url);
         blogs = response.data;
       } catch (error) {
         console.error('Error fetching data:', error);
