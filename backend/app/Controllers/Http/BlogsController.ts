@@ -126,4 +126,21 @@ export default class BlogsController {
         // render detailed view for blog
         return view.render('blogs/view', {blog, user})
     }
+
+    /**
+     * =======================================
+     * 
+     * API : methods to handle API Blog routes
+     * 
+     * =======================================
+     */
+
+    /**
+     * apiIndex : method to fetch all blogs
+    */
+    public async apiIndex() {
+
+        // fecth all blogs
+        return await Blog.all()
+    }
 }
