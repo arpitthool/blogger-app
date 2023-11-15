@@ -4,7 +4,7 @@
 
 This is a web Blog app built using AdoniJS TyperScript. Edge templates are used UI and the app uses PostgreSQL database.
 
-# Setup and configure backend app
+# BACKEND
 
 ## Install modules
 
@@ -39,6 +39,19 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 ## start app
 
     node ace serve
+
+
+# FRONTEND
+
+## Create and run Sveltekit typescript app
+
+    npm create svelte@latest frontend
+
+    cd frontend
+
+    npm install
+
+    npm run dev
 
 -------
 
@@ -173,16 +186,5 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
  
     node ace invoke @adonisjs/auth
 
-# FRONTEND
-
-## Create and run Sveltekit typescript app
-
-    npm create svelte@latest frontend
-
-    cd frontend
-
-    npm install
-
-    npm run dev
 
     
