@@ -94,4 +94,37 @@ export default class AuthController {
         // redirect to home page
         return response.redirect('/')
     }
+
+    /**
+     * =======================================
+     * 
+     * API : methods to handle API Auth routes
+     * 
+     * =======================================
+     */
+
+    /**
+     * apiLogin : method to handle user login
+     */
+    public async apiLogin({auth, request, response, session} : HttpContextContract) {
+        
+        // extract email and password
+        const {email, password} = request.all()
+
+        try {
+            // using email and password try to attempt to login the user
+            await auth.attempt(email, password)
+            
+            // redirect user to home page when log in is successful
+            response.redirect('/')
+
+        } catch (error) {
+            // in case of failure we need to notify user
+            // session.flash('notification', 'We could not verify your credentials')
+            
+            // redirect to previous page
+            response.redirect('back')
+        }
+    }
+    
 }

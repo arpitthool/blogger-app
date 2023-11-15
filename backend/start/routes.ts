@@ -76,6 +76,8 @@ Route.get('/login', 'AuthController.showLogin').middleware('guest')
 // route to extablish login
 Route.post('/login', 'AuthController.login')
 
+Route.post('/api/login', 'AuthController.apiLogin').middleware('guest')
+
 // route to logout user
 Route.get('/logout', 'AuthController.logout')
 
