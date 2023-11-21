@@ -84,3 +84,7 @@
  
     node ace invoke @adonisjs/auth
     
+## To create a main seeder which is run on 'node ace db:seed' command. Run the below command and then open the config/database.ts file and register the path to the Main seeder directory inside the connection config. Now , the db:seed command will scan the ./database/seeders/MainSeeder directory. Now, you can manually import all the seeders inside the Main seeder file and execute them in any order you want.
+
+    node ace make:seeder MainSeeder/index
+
