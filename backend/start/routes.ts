@@ -98,6 +98,9 @@ Route.post('/api/login', 'AuthController.apiLogin')
 // API route to check if user is logged in
 Route.get('/api/login', 'AuthController.apiLoginCheck')
 
+// API route to logout
+Route.post('/api/logout', 'AuthController.apiLogout')
+
 
 /**
  * ADONIS JS : A LESSON ON ROUTES

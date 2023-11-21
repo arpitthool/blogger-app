@@ -172,4 +172,16 @@ export default class AuthController {
         return auth.user
     }
 
+    /**
+     * apiLogout : method to logout a user who is logged in
+     */
+    public async apiLogout({auth, response} : HttpContextContract) {
+        
+        // logout existing user
+        await auth.logout()
+
+        // send logout-successful response
+        return response.json({ message : 'You have been logged out'})
+    }
+
 }
