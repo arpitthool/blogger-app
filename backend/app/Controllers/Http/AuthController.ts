@@ -96,7 +96,11 @@ export default class AuthController {
     }
 
     /**
-     * API ROUTES
+     * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+     * 
+     *        METHODS FOR API ROUTES
+     * 
+     * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
      */
 
     /**
@@ -157,6 +161,15 @@ export default class AuthController {
             // send 400 response
             return response.status(400).json({ message: 'Email or password is incorrect!'})
         }
+    }
+
+    /**
+     * apiLoginCheck : method to check if user is logged in
+     */
+    public apiLoginCheck({auth} : HttpContextContract) {
+        
+        // if the user is authenticated then return user details if not then nothing will be returned
+        return auth.user
     }
 
 }

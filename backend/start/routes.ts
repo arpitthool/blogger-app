@@ -95,6 +95,9 @@ Route.post('/api/register', 'AuthController.apiRegister')
 // API route to login existing user
 Route.post('/api/login', 'AuthController.apiLogin')
 
+// API route to check if user is logged in
+Route.get('/api/login', 'AuthController.apiLoginCheck')
+
 
 /**
  * ADONIS JS : A LESSON ON ROUTES
