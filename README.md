@@ -1,5 +1,9 @@
 # blogger-app
 
+# APP DEMO 
+
+https://github.com/arpitthool/blogger-app/assets/26833013/c163cb61-52e0-458c-997d-9984355a5512
+
 # BACKEND
 
 This is a web Blog app built using AdoniJS TyperScript. Edge templates are used UI and the app uses PostgreSQL database.
