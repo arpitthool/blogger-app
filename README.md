@@ -1,6 +1,6 @@
 # blogger-app
 
-This Blogger web app uses TypeScript (prohgramming language), AdonisJS (backend framework), Svelte (frontend framework) & PostgreSQL (database). A guest is able to read existing blogs and sign up for an account. A logged in user can create new blogs, delete their own blogs and also like/dislike the blogs of their choice.
+This Blogger web app uses TypeScript (programming language), AdonisJS (backend framework), Svelte (frontend framework) & PostgreSQL (database). A guest is able to read existing blogs and sign up for an account. A logged in user can create new blogs, delete their own blogs and also like/dislike the blogs of their choice.
 
 ------
 
