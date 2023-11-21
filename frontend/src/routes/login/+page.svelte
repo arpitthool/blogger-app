@@ -1,32 +1,33 @@
 <script>
   import { goto } from "$app/navigation";
 
-  let username = '';
+  let email = '';
   let password = '';
-  // let csrfToken = ''; // CSRF token
 
   // Function to handle the login submission
   const handleSubmit = async () => {
-    // Include the CSRF token in the headers
-    const headers = {
-      'Content-Type': 'application/json',
-      // 'X-CSRF-Token': csrfToken,
-    };
 
-      const hostUrl = import.meta.env.VITE_HOST;
+    const hostUrl = import.meta.env.VITE_HOST;
 
-
-    // Your login API endpoint
+    // login API endpoint
     const loginEndpoint = hostUrl+'/api/login';
 
     try {
-      const response = await fetch(loginEndpoint, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ username, password }),
-      });
 
-      if (response.ok) {
+      var myHeaders = new Headers();
+      var formdata = new FormData();
+      formdata.append("email", email);
+      formdata.append("password", password);
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+      };
+
+      const response = fetch(loginEndpoint, requestOptions)
+
+      if ((await response).status == 200) {
         // Handle successful login
         console.log('Login successful!');
         goto('/')
@@ -35,6 +36,7 @@
         // Handle login failure
         console.error('Login failed');
       }
+
     } catch (error) {
       console.error('Error during login:', error);
     }
@@ -44,11 +46,12 @@
 <main>
   <h1>Login</h1>
   <form on:submit|preventDefault={handleSubmit}>
-    <label for="username">Username:</label>
-    <input type="text" bind:value={username} id="username" />
+
+    <label for="email">Email:</label>
+    <input type="text" name="email" bind:value={email} id="email" />
 
     <label for="password">Password:</label>
-    <input type="password" bind:value={password} id="password" />
+    <input type="password" name="password" bind:value={password} id="password" />
 
     <button type="submit">Login</button>
   </form>
