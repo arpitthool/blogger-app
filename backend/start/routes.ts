@@ -92,6 +92,9 @@ Route.get('/api', 'BlogsController.apiIndex')
 // API route to register user
 Route.post('/api/register', 'AuthController.apiRegister')
 
+// API route to login existing user
+Route.post('/api/login', 'AuthController.apiLogin')
+
 
 /**
  * ADONIS JS : A LESSON ON ROUTES

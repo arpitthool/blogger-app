@@ -138,4 +138,25 @@ export default class AuthController {
         return response.json({ message : 'Thanks for registering!'})
     }
 
+    /**
+     * apilogin : method to handle user login
+     */
+    public async apiLogin({auth, request, response} : HttpContextContract) {
+        
+        // extract email and password
+        const {email, password} = request.all()
+
+        try {
+            // using email and password try to attempt to login the user
+            await auth.attempt(email, password)
+            
+            // return sucess message
+            return response.json({ message : 'Welcome Back!'})
+
+        } catch (_error) {
+            // send 400 response
+            return response.status(400).json({ message: 'Email or password is incorrect!'})
+        }
+    }
+
 }
