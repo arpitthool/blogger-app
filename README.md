@@ -1,10 +1,17 @@
 # blogger-app
 
+This Blogger web app uses TypeScript (prohgramming language), AdonisJS (backend framework), Svelte (frontend framework) & PostgreSQL (database). A guest is able to read existing blogs and sign up for an account. A logged in user can create new blogs, delete their own blogs and also like/dislike the blogs of their choice.
+
+------
+
 # APP DEMO 
 
 https://github.com/arpitthool/blogger-app/assets/26833013/c163cb61-52e0-458c-997d-9984355a5512
 
-# BACKEND
+----
+
+
+# APP SETUP : BACKEND
 
 This is a web Blog app built using AdoniJS TyperScript. Edge templates are used UI and the app uses PostgreSQL database.
 
@@ -46,7 +53,9 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 
     node ace serve
 
-# Setup and run frontend
+-----
+
+# APP SETUP : FRONTEND
 
 ## Create and run Sveltekit typescript app
 
