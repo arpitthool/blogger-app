@@ -31,9 +31,6 @@ import Route from '@ioc:Adonis/Core/Route'
 // route to get all blogs
 Route.get('/', 'BlogsController.index').as('home')
 
-// API route to fetch all blogs as JSON
-Route.get('/api', 'BlogsController.apiIndex')
-
 Route.group(() => {
 
   // route to get user's blogs
@@ -58,6 +55,7 @@ Route.group(() => {
 // route to get blog with specified id
 Route.get('/blog/:id', 'BlogsController.getBlog')
 
+
 /**
  * AUTH ROUTES
  */
@@ -78,6 +76,22 @@ Route.post('/login', 'AuthController.login')
 
 // route to logout user
 Route.get('/logout', 'AuthController.logout')
+
+
+/**
+ * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ * 
+ *        ALL API ROUTES
+ * 
+ * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ */
+
+// API route to fetch all blogs as JSON
+Route.get('/api', 'BlogsController.apiIndex')
+
+// API route to register user
+Route.post('/api/register', 'AuthController.apiRegister')
+
 
 /**
  * ADONIS JS : A LESSON ON ROUTES

@@ -94,4 +94,48 @@ export default class AuthController {
         // redirect to home page
         return response.redirect('/')
     }
+
+    /**
+     * API ROUTES
+     */
+
+    /**
+     * apiRegister : method to create new user details if the data validation is successful
+     */
+    public async apiRegister({request, auth, response} : HttpContextContract) {
+
+        // validation schema for user data
+        const validationSchema = schema.create({
+
+            // validate name
+            name : schema.string({trim : true}),
+
+            // validate that email is a proper email, satisfies the length, and is unique
+            email : schema.string({trim : true}, [
+                rules.email(),
+                rules.maxLength(255),
+                rules.unique({ table: 'users' , column : 'email'})
+            ]),
+
+            // confirm password is same as confirm password
+            password : schema.string({trim : true}, [
+                rules.confirmed(),
+            ])
+        })
+
+        // validate request data with above validation schema and get validated data
+        const validatedData = await request.validate({
+            schema : validationSchema,
+        })
+
+        // create user
+        const user = await User.create(validatedData)
+
+        // once user is created we log the user in
+        await auth.login(user)
+
+        // return view
+        return response.json({ message : 'Thanks for registering!'})
+    }
+
 }
