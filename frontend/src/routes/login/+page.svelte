@@ -43,16 +43,47 @@
   };
 </script>
 
-<main>
-  <h1>Login</h1>
-  <form on:submit|preventDefault={handleSubmit}>
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+      <div class="box">
+          <h2 class="title has-text-centered">Login</h2>
 
-    <label for="email">Email:</label>
-    <input type="text" name="email" bind:value={email} id="email" />
+          <form on:submit|preventDefault={handleSubmit}>
 
-    <label for="password">Password:</label>
-    <input type="password" name="password" bind:value={password} id="password" />
+              <div class="field">
+                  <label for="email" class="label">Email</label>
 
-    <button type="submit">Login</button>
-  </form>
-</main>
+                  <div class="control">
+                      <input
+                          type="email"
+                          class="input"
+                          name="email"
+                          required
+                          bind:value={email}
+                      >
+                  </div>
+              </div>
+
+              <div class="field">
+                  <label for="password" class="label">Password</label>
+
+                  <div class="control">
+                      <input
+                          type="password"
+                          class="input"
+                          name="password"
+                          required
+                          bind:value={password}
+                      >
+                  </div>
+              </div>
+
+
+              <div class="control">
+                  <button type="submit" class="button is-link is-fullwidth">Login</button>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>
