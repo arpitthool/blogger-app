@@ -1,5 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
+  import axios from "axios";
 
   let email = '';
   let password = '';
@@ -7,27 +8,14 @@
   // Function to handle the login submission
   const handleSubmit = async () => {
 
+    // get backend url
     const hostUrl = import.meta.env.VITE_HOST;
 
-    // login API endpoint
-    const loginEndpoint = hostUrl+'/api/login';
-
     try {
+      // make POST request to login by passing given credentials
+      const response = await axios.post(hostUrl + '/api/login', {email : email, password : password})
 
-      var myHeaders = new Headers();
-      var formdata = new FormData();
-      formdata.append("email", email);
-      formdata.append("password", password);
-
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: formdata,
-      };
-
-      const response = fetch(loginEndpoint, requestOptions)
-
-      if ((await response).status == 200) {
+      if (response.status == 200) {
         // Handle successful login
         console.log('Login successful!');
         goto('/')
