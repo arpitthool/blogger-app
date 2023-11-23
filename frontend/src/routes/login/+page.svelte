@@ -13,7 +13,7 @@
 
     try {
       // make POST request to login by passing given credentials
-      const response = await axios.post(hostUrl + '/api/login', {email : email, password : password})
+      const response = await axios.post(hostUrl + '/api/login', {email : email, password : password, withCredentials : true})
 
       if (response.status == 200) {
         // Handle successful login
