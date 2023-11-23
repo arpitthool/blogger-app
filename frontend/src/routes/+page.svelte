@@ -4,19 +4,22 @@
     import axios from 'axios';
     const hostUrl = import.meta.env.VITE_HOST;
 
-        /**
+    /**
      * @type {any[]}
      */
     let blogs = [];
-  
+    let user;
+      
     onMount(async () => {
-      try {
-        const url = hostUrl + '/api'
-        const response = await axios.get(url);
-        blogs = response.data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+        try {
+
+            user = (await axios.get(hostUrl + '/api/login', { withCredentials : true})).data
+
+            blogs = (await axios.get(hostUrl + '/api')).data
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     });
   </script>
   
