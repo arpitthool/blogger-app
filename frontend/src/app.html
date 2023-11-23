@@ -11,58 +11,6 @@
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-
-		<nav class="navbar has-background-success">
-			<div class="container">
-				<p>Hi! welcome to my Blogger App. This AdonisJS TypeScript app uses a Edge templates for frontend, PostgreSQL database and is hosted on an AWS EC2 instance with Elastic IPs 
-				<br>Developer : Arpit Thool || Check out the github repository for this project : <a href="https://github.com/arpitthool/blogger-app">Blogger</a></p>
-			</div>
-		</nav>
-		
-		<nav class="navbar is-link">
-			<div class="container">
-				<div class="navbar-brand">
-					<a href="/" class="navbar-item"><i>Blogger</i></a>
-				</div>
-		
-				<!-- {{--  login menu  --}} -->
-				<div class="navbar-menu">
-					<div class="navbar-end">
-						<!-- {{--  check if user is logged in  --}} -->
-						<!-- @if(auth.isLoggedIn) -->
-						  <div class="navbar-item has-dropdown is-hoverable">
-							<a class="navbar-link has-text-white">{{ auth.user.name }}</a>
-							<div class="navbar-dropdown">
-								<a href="/logout" class="navbar-item">
-									<!-- {{--  <span class="icon"><i class="fas fa-sign-out-alt"></i></span>  --}} -->
-									<span>Logout</span>
-								</a>
-		
-								<a href="/create" class="navbar-item">
-									<!-- {{--  <span class="icon"><i class="fas fa-sign-out-alt"></i></span>  --}} -->
-									<span>Create New Blog</span>
-								</a>
-		
-								<a href="/myBlogs" class="navbar-item">
-									<!-- {{--  <span class="icon"><i class="fas fa-sign-out-alt"></i></span>  --}} -->
-									<span>My Blogs</span>
-								</a>
-							</div>
-						  </div>
-						<!-- @else -->
-							<a href="/register" class="navbar-item">Register</a>
-							<a href="/login" class="navbar-item">Login</a>
-						  
-						<!-- @endif -->
-					</div>
-				</div>
-			</div>
-		</nav>
-
-		<section class="section">
-			<div class="container">
-				<div style="display: contents">%sveltekit.body%</div>
-			</div>
-		</section>
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

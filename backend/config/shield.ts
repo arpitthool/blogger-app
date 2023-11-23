@@ -92,8 +92,8 @@ export const csrf: ShieldConfig['csrf'] = {
 	| ```
   |
   */
-  exceptRoutes: [],
-
+  // exceptRoutes: [],
+  exceptRoutes: ({ request }) => request.url().includes('/api'),
   /*
   |--------------------------------------------------------------------------
   | Enable Sharing Token Via Cookie

@@ -94,4 +94,94 @@ export default class AuthController {
         // redirect to home page
         return response.redirect('/')
     }
+
+    /**
+     * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+     * 
+     *        METHODS FOR API ROUTES
+     * 
+     * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+     */
+
+    /**
+     * apiRegister : method to create new user details if the data validation is successful
+     */
+    public async apiRegister({request, auth, response} : HttpContextContract) {
+
+        // validation schema for user data
+        const validationSchema = schema.create({
+
+            // validate name
+            name : schema.string({trim : true}),
+
+            // validate that email is a proper email, satisfies the length, and is unique
+            email : schema.string({trim : true}, [
+                rules.email(),
+                rules.maxLength(255),
+                rules.unique({ table: 'users' , column : 'email'})
+            ]),
+
+            // confirm password is same as confirm password
+            password : schema.string({trim : true}, [
+                rules.confirmed(),
+            ])
+        })
+
+        // validate request data with above validation schema and get validated data
+        const validatedData = await request.validate({
+            schema : validationSchema,
+        })
+
+        // create user
+        const user = await User.create(validatedData)
+
+        // once user is created we log the user in
+        await auth.login(user)
+
+        // return view
+        return response.json({ message : 'Thanks for registering!'})
+    }
+
+    /**
+     * apilogin : method to handle user login
+     */
+    public async apiLogin({auth, request, response} : HttpContextContract) {
+        
+        // extract email and password
+        const {email, password} = request.all()
+
+        try {
+            // using email and password try to attempt to login the user
+            await auth.attempt(email, password)
+            
+            // return sucess message
+            return response.json({ message : 'Welcome Back!'})
+
+        } catch (_error) {
+            // send 400 response
+            return response.status(400).json({ message: 'Email or password is incorrect!'})
+        }
+    }
+
+    /**
+     * apiLoginCheck : method to check if user is logged in
+     */
+    public apiLoginCheck({auth} : HttpContextContract) {
+        
+        // if the user is authenticated then return user details if not then nothing will be returned
+        return auth.user
+    }
+
+    /**
+     * apiLogout : method to logout a user who is logged in
+     */
+    public async apiLogout({auth, response} : HttpContextContract) {
+        
+        // logout existing user
+        await auth.logout()
+
+        // send logout-successful response
+        return response.json({ message : 'You have been logged out'})
+    }
+
 }

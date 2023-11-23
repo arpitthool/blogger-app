@@ -1,32 +1,21 @@
 <script>
   import { goto } from "$app/navigation";
+  import axios from "axios";
 
-  let username = '';
+  let email = '';
   let password = '';
-  // let csrfToken = ''; // CSRF token
 
   // Function to handle the login submission
   const handleSubmit = async () => {
-    // Include the CSRF token in the headers
-    const headers = {
-      'Content-Type': 'application/json',
-      // 'X-CSRF-Token': csrfToken,
-    };
 
-      const hostUrl = import.meta.env.VITE_HOST;
-
-
-    // Your login API endpoint
-    const loginEndpoint = hostUrl+'/api/login';
+    // get backend url
+    const hostUrl = import.meta.env.VITE_HOST;
 
     try {
-      const response = await fetch(loginEndpoint, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ username, password }),
-      });
+      // make POST request to login by passing given credentials
+      const response = await axios.post(hostUrl + '/api/login', {email : email, password : password, withCredentials : true})
 
-      if (response.ok) {
+      if (response.status == 200) {
         // Handle successful login
         console.log('Login successful!');
         goto('/')
@@ -35,21 +24,54 @@
         // Handle login failure
         console.error('Login failed');
       }
+
     } catch (error) {
       console.error('Error during login:', error);
     }
   };
 </script>
 
-<main>
-  <h1>Login</h1>
-  <form on:submit|preventDefault={handleSubmit}>
-    <label for="username">Username:</label>
-    <input type="text" bind:value={username} id="username" />
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+      <div class="box">
+          <h2 class="title has-text-centered">Login</h2>
 
-    <label for="password">Password:</label>
-    <input type="password" bind:value={password} id="password" />
+          <form on:submit|preventDefault={handleSubmit}>
 
-    <button type="submit">Login</button>
-  </form>
-</main>
+              <div class="field">
+                  <label for="email" class="label">Email</label>
+
+                  <div class="control">
+                      <input
+                          type="email"
+                          class="input"
+                          name="email"
+                          required
+                          bind:value={email}
+                      >
+                  </div>
+              </div>
+
+              <div class="field">
+                  <label for="password" class="label">Password</label>
+
+                  <div class="control">
+                      <input
+                          type="password"
+                          class="input"
+                          name="password"
+                          required
+                          bind:value={password}
+                      >
+                  </div>
+              </div>
+
+
+              <div class="control">
+                  <button type="submit" class="button is-link is-fullwidth">Login</button>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>
