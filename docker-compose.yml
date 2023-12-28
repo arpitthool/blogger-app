@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  adonis-app:
+    image: my-adonisjs-image
+    command: sh -c "node ace migration:fresh && node ace db:seed && node ace serve"
+    ports:
+      - "3333:3333"
+    depends_on:
+      - postgres
