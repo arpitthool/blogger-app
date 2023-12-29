@@ -6,8 +6,6 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-    ports:
-      - "5432:5432"
 
   adonis-app:
     image: my-adonisjs-image
