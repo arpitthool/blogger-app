@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+  adonis-app:
+    image: my-adonisjs-image
+    command: sh -c "node ace migration:fresh && node ace db:seed && node ace serve"
+    ports:
+      - "3333:3333"
+    depends_on:
+      - postgres
+
+  sveltekit-app:
+    image: my-sveltekit-image
+    ports:
+      - "3000:3000"
+    depends_on:
+      - adonis-app

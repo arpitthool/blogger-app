@@ -4,11 +4,11 @@ import User from 'App/Models/User'
 
 export default class AuthController {
     /**
-     * showRegister : method to render user registeration page
+     * showRegister : method to render user registration page
     */
     public showRegister({view} : HttpContextContract) {
 
-        // return regsiter page
+        // return register page
         return view.render('auth/register')
     }
 
@@ -64,21 +64,21 @@ export default class AuthController {
      * login : method to handle user login
      */
     public async login({auth, request, response, session} : HttpContextContract) {
-        
+
         // extract email and password
         const {email, password} = request.all()
 
         try {
             // using email and password try to attempt to login the user
             await auth.attempt(email, password)
-            
+
             // redirect user to home page when log in is successful
             response.redirect('/')
 
         } catch (error) {
             // in case of failure we need to notify user
             session.flash('notification', 'We could not verify your credentials')
-            
+
             // redirect to previous page
             response.redirect('back')
         }
@@ -97,9 +97,9 @@ export default class AuthController {
 
     /**
      * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-     * 
+     *
      *        METHODS FOR API ROUTES
-     * 
+     *
      * $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
      */
 
@@ -146,14 +146,14 @@ export default class AuthController {
      * apilogin : method to handle user login
      */
     public async apiLogin({auth, request, response} : HttpContextContract) {
-        
+
         // extract email and password
         const {email, password} = request.all()
 
         try {
             // using email and password try to attempt to login the user
             await auth.attempt(email, password)
-            
+
             // return sucess message
             return response.json({ message : 'Welcome Back!'})
 
@@ -167,7 +167,7 @@ export default class AuthController {
      * apiLoginCheck : method to check if user is logged in
      */
     public apiLoginCheck({auth} : HttpContextContract) {
-        
+
         // if the user is authenticated then return user details if not then nothing will be returned
         return auth.user
     }
@@ -176,7 +176,7 @@ export default class AuthController {
      * apiLogout : method to logout a user who is logged in
      */
     public async apiLogout({auth, response} : HttpContextContract) {
-        
+
         // logout existing user
         await auth.logout()
 

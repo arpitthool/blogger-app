@@ -9,7 +9,7 @@ export default class BlogsController {
     */
     public async index({view} : HttpContextContract) {
 
-        // fecth all blogs
+        // fetch all blogs
         const blogs = await Blog.all()
 
         // pass blogs to view
@@ -30,7 +30,7 @@ export default class BlogsController {
 
     /**
      * store : method to vlaidate Blog data and store Blog into database OR show appropriate errors
-     * 
+     *
      * NOTE : if we are performing an async operation in method then we add async to method definition
      */
     public async store({request, response, session, auth} : HttpContextContract) {
@@ -80,7 +80,7 @@ export default class BlogsController {
         // redirect to the previous page
         return response.redirect('back')
     }
-    
+
     /**
      * deleteBlog : method to delete blog object based on id parameter
      */
@@ -107,7 +107,7 @@ export default class BlogsController {
      * create method to render create blog page
     */
     public create({view} : HttpContextContract) {
-        
+
         // render create blog view
         return view.render('blogs/create')
     }
@@ -129,9 +129,9 @@ export default class BlogsController {
 
     /**
      * =======================================
-     * 
+     *
      * API : methods to handle API Blog routes
-     * 
+     *
      * =======================================
      */
 
