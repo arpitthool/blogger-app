@@ -14,3 +14,10 @@ services:
       - "3333:3333"
     depends_on:
       - postgres
+
+  sveltekit-app:
+    image: my-sveltekit-image
+    ports:
+      - "3000:3000"
+    depends_on:
+      - adonis-app
