@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: password
 
   adonis-app:
-    image: my-adonisjs-image
+    build: ./backend
     command: sh -c "node ace migration:fresh && node ace db:seed && node ace serve"
     ports:
       - "3333:3333"
@@ -16,7 +16,7 @@ services:
       - postgres
 
   sveltekit-app:
-    image: my-sveltekit-image
+    build: ./frontend
     ports:
       - "3000:3000"
     depends_on:
