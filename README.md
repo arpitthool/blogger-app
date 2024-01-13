@@ -10,8 +10,30 @@ https://github.com/arpitthool/blogger-app/assets/26833013/c163cb61-52e0-458c-997
 
 ----
 
+# APP SETUP (DOCKER) : 
 
-# APP SETUP : BACKEND
+## Install docker and docker-compose
+
+Steps to install docker : https://docs.docker.com/engine/install/
+
+Steps to install docker-compose : https://docs.docker.com/compose/install/
+
+## Build and run the docker-compose file
+
+This docker-compose command builds the required images by using the Dockerfiles for frontend and backend, located in
+their respective directories. This will also spin up a PostgreSQL container for database. Note: As the PostgreSQL
+container ephemeral it will only persist its data as long as the container keeps running.
+
+    docker-compose up -d --build
+
+The frontend app should be available on http://localhost:3000 and the backend app on http://localhost:3333
+
+----
+
+Follow below instructions if you want to individually run the backend, frontend and database services without docker
+
+
+#  APP SETUP : BACKEND
 
 This is a web Blog app built using AdoniJS TyperScript. Edge templates are used UI and the app uses PostgreSQL database.
 
@@ -37,9 +59,9 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
     DB_CONNECTION=pg
     PG_HOST=127.0.0.1
     PG_PORT=5432
-    PG_USER=lucid
+    PG_USER=postgres
     PG_PASSWORD=password
-    PG_DB_NAME=blogs
+    PG_DB_NAME=postgres
 
 ## run migrations
 
@@ -69,7 +91,9 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 
 -------
 
-# Install and setup PostgreSQL for Ubuntu
+# DATABASE SETUP
+
+Note : Here are the installation and setup instruction for PostgreSQL service for Ubuntu
 
 ## Install postgresql
  
@@ -95,23 +119,16 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 
 ## create database
  
-    create database DB_NAME;
+    create database postgres;
 
 ## create user and set password
  
-    create user myuser with encrypted password 'mypass';
+    create user postgres with encrypted password 'password';
 
 ## grant db permissions to the user
   
-    grant all privileges on database mydb to myuser;
+    grant all privileges on database postgres to postgres;
 
-## select a db
- 
-    \c DB_NAME
-
-## show table content
- 
-    select * from TABLE_NAME
 -------
 
 
