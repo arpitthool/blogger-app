@@ -143,4 +143,13 @@ export default class BlogsController {
         // fecth all blogs
         return await Blog.all()
     }
+
+    /**
+     * apiGetBlog : method to fetch a single blog with additional details
+     */
+    public async apiGetBlog({params} : HttpContextContract ) {
+
+        // fecth blog object using id from params
+        return await Blog.findOrFail(params.id)
+    }
 }

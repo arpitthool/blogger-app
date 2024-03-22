@@ -87,7 +87,10 @@ Route.get('/logout', 'AuthController.logout')
  */
 
 // API route to fetch all blogs as JSON
-Route.get('/api', 'BlogsController.apiIndex')
+Route.get('/api/blogs', 'BlogsController.apiIndex')
+
+// route to get blog with specified id
+Route.get('/api/blogs/:id', 'BlogsController.apiGetBlog')
 
 // API route to register user
 Route.post('/api/register', 'AuthController.apiRegister')
