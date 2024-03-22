@@ -27,18 +27,14 @@
     });
   </script>
 
-<nav class="navbar has-background-success">
-    <div class="container">
-        <p>Hi! welcome to my Blogger App. This AdonisJS TypeScript app uses a Edge templates for frontend, PostgreSQL database and is hosted on an AWS EC2 instance with Elastic IPs 
-        <br>Developer : Arpit Thool || Check out the github repository for this project : <a href="https://github.com/arpitthool/blogger-app">Blogger</a></p>
-    </div>
-</nav>
-
 <nav class="navbar is-link">
     <div class="container">
         <div class="navbar-brand">
             <a href="/" class="navbar-item"><i>Blogger</i></a>
         </div>
+
+        <a href="/about" class="navbar-item">About</a>
+
 
         <div class="navbar-menu">
             <div class="navbar-end">
