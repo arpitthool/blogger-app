@@ -3,7 +3,6 @@
     import { onMount } from 'svelte';
     import axios from 'axios';
     const hostUrl = import.meta.env.VITE_HOST;
-    import Navbar from '$lib/Navbar.svelte'
 
     /**
      * @type {any[]}
@@ -21,7 +20,6 @@
   </script>
   
 
-<Navbar /> 
 <section class="section">
     <div class="container">
 
