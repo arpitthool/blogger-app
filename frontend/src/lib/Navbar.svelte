@@ -33,6 +33,7 @@
             <a href="/" class="navbar-item"><i>Blogger</i></a>
         </div>
 
+        <a href="/blogs" class="navbar-item">Blogs</a>
         <a href="/about" class="navbar-item">About</a>
 
 
