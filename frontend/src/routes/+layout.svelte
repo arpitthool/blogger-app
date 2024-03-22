@@ -3,5 +3,4 @@
 </script>
 
 <Navbar/>
-
 <slot/>
