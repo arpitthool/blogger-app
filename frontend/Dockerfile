@@ -1,4 +1,4 @@
-FROM node:lts-alpine as build
+FROM node:21-alpine3.17 as build
 WORKDIR /app
 COPY ./package*.json ./
 RUN npm install
@@ -11,4 +11,4 @@ COPY --from=build /app/package.json .
 COPY --from=build /app/package-lock.json .
 RUN npm ci --omit dev
 EXPOSE 3000
-CMD ["node", "."]
+CMD ["node", ".", "--enable-source-maps"]
