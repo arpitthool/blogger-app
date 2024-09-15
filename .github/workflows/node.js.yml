@@ -16,5 +16,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: pwd
-    - run: echo hello-world
+    - run: npm ci
+    - run: node ace migration:run
+    # - run: node ace serve
