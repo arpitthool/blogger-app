@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Blog from 'App/Models/Blog'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/User'
+import Comment from 'App/Models/Comment'
 
 export default class BlogsController {
     /**
@@ -123,8 +124,15 @@ export default class BlogsController {
         // fetch blog author
         const user = await User.findOrFail(blog.userId)
 
+        // get blog comments
+        const comments = await this.getComments(blog.id)
+
         // render detailed view for blog
-        return view.render('blogs/view', {blog, user})
+        return view.render('blogs/view', {blog, user, comments})
+    }
+
+    public async getComments(id) {
+        return Comment.query().where('blog_id',id )
     }
 
     /**
