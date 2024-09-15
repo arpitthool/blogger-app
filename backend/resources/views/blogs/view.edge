@@ -33,6 +33,48 @@
                 <a class="card-footer-item" href="/dislikeBlog/{{ blog.id }}">&#128078;</a>
             
         </footer>
+        
+        <div class="card">
+            <ul>
+                @each(comment in comments)
+                <li>
+                        <div class="card-content">
+                            <div class="content">
+                                {{ comment.content }}
+                            </div>
+                            @if(auth.isLoggedIn && auth.user?.id == comment.userId)
+                                <form action="/comment/{{ comment.id }}?_method=DELETE" method="post">
+                                    {{ csrfField() }}
+                                    <button type="submit" class="button is-danger">Delete Comment</button>
+                                </form>
+                            @endif
+                        </div>
+                </li>
+                @endeach
+            </ul>
+        </div>
 
+        {{--  create comment form --}}
+        <div class="box">
+                <form action="/comment/{{ blog.id }}" method="post">
+
+                    {{--  to avoid 'E_BAD_CSRF_TOKEN: Invalid CSRF Token' Error --}}
+                    {{ csrfField() }}
+                
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                            <textarea type="text" name="content" required
+                                class="input {{  flashMessages.has('errors.content') ? 'is-danger' : '' }}" 
+                                placeholder="My Comment">{{ flashMessages.has('content') ? flashMessages.get('content') : '' }}</textarea>
+                            <br>
+                            <br>
+                            <button type="submit" class="button is-link">Add Comment</button>
+                        </div>
+                    </div>
+
+                </form>
+        </div>
+        
     </div>
 @endsection
