@@ -34,12 +34,12 @@
             
         </footer>
         
-        <div class="card">
+        <div class="box">
             <ul>
                 @each(comment in comments)
                 <li>
-                        <div class="card-content">
-                            <div class="content">
+                        <div class="card">
+                            <div class="card-content">
                                 {{ comment.content }}
                             </div>
                             @if(auth.isLoggedIn && auth.user?.id == comment.userId)
