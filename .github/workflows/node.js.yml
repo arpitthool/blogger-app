@@ -18,4 +18,8 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: node ace migration:run
-    # - run: node ace serve
+    - run: node ace build --production
+    - run: cp .env build/
+    - run: cd build
+    - run: npm ci --production
+    - run: pm2 restart server
