@@ -106,9 +106,6 @@ Note : Here are the installation and setup instruction for PostgreSQL service fo
  
     sudo systemctl start postgresql.service
 
-    
-    sudo systemctl start postgresql.service
-
 ## Switch to postgres account
  
     sudo -i -u postgres
@@ -124,6 +121,8 @@ Note : Here are the installation and setup instruction for PostgreSQL service fo
 ## create user and set password
  
     create user postgres with encrypted password 'password';
+
+    alter user postgres with encrypted password 'password';
 
 ## grant db permissions to the user
   
