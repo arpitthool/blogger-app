@@ -21,5 +21,6 @@ export default class IndexSeeder extends BaseSeeder {
     await this.runSeeder(await import('../User'))
     await this.runSeeder(await import('../Blog'))
     await this.runSeeder(await import('../Like'))
+    await this.runSeeder(await import('../Comment'))
   }
 }
