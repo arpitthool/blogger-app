@@ -50,6 +50,14 @@ Route.group(() => {
 
   // route to like blog
   Route.get('/dislikeBlog/:id', 'LikesController.dislike')
+
+  // route to create comment
+  // Route.post('/comment', 'CommentsController.store' )
+  Route.post('/comment/:blog_id', 'CommentsController.store' )
+
+  // route to delete comemnt
+  Route.delete('/comment/:id', 'CommentsController.delete')
+
 }).middleware('auth')
 
 // route to get blog with specified id
