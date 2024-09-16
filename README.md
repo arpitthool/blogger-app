@@ -1,6 +1,6 @@
 # blogger-app
 
-This Blogger web app uses TypeScript (programming language), AdonisJS (backend framework), Svelte (frontend framework) & PostgreSQL (database). A guest is able to read existing blogs and sign up for an account. A logged in user can create new blogs, delete their own blogs and also like/dislike the blogs of their choice.
+This Blogger web app uses TypeScript (programming language), AdonisJS (backend & frontend) & PostgreSQL (database). A guest is able to read existing blogs and sign up for an account. A logged in user can create new blogs, delete their own blogs and also like/dislike the blogs of their choice.
 
 ------
 
@@ -10,30 +10,7 @@ https://github.com/arpitthool/blogger-app/assets/26833013/c163cb61-52e0-458c-997
 
 ----
 
-# APP SETUP (DOCKER) : 
-
-## Install docker and docker-compose
-
-Steps to install docker : https://docs.docker.com/engine/install/
-
-Steps to install docker-compose : https://docs.docker.com/compose/install/
-
-## Build and run the docker-compose file
-
-This docker-compose command builds the required images by using the Dockerfiles for frontend and backend, located in
-their respective directories. This will also spin up a PostgreSQL container for database. Note: As the PostgreSQL
-container ephemeral it will only persist its data as long as the container keeps running.
-
-    docker-compose up -d --build
-
-The frontend app should be available on http://localhost:3000 and the backend app on http://localhost:3333
-
-----
-
-Follow below instructions if you want to individually run the backend, frontend and database services without docker
-
-
-#  APP SETUP : BACKEND
+#  APP SETUP
 
 This is a web Blog app built using AdoniJS TyperScript. Edge templates are used UI and the app uses PostgreSQL database.
 
@@ -71,23 +48,9 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 
     node ace db:seed
 
-## start app
+## start app (development)
 
     node ace serve
-
------
-
-# APP SETUP : FRONTEND
-
-## Create and run Sveltekit typescript app
-
-    npm create svelte@latest frontend
-
-    cd frontend
-
-    npm install
-
-    npm run dev
 
 -------
 
@@ -130,6 +93,27 @@ Note : Here are the installation and setup instruction for PostgreSQL service fo
 
 -------
 
+# DEPLOYING THE APP IN PRODUCTION
 
+## Build the AdonisJS app for production.
 
+    node ace build --production
+
+## Copy the environment configuration file to the build directory.
+
+    cp .env build/
+
+## Navigate to the build directory.
+  
+    cd build
+    
+## Install production dependencies in the build directory.
+
+    npm ci --production
+    
+## Restart the server using PM2 for process management.
+
+    node server.js
+    
+-------
     
