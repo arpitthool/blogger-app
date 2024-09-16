@@ -81,7 +81,7 @@ Note : Here are the installation and setup instruction for PostgreSQL service fo
  
     create database postgres;
 
-## create user and set password
+## Create user and set the password
  
     create user postgres with encrypted password 'password';
 
@@ -111,7 +111,7 @@ Note : Here are the installation and setup instruction for PostgreSQL service fo
 
     npm ci --production
     
-## Restart the server using PM2 for process management.
+## Start the server.
 
     node server.js
     
