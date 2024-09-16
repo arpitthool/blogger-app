@@ -16,7 +16,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
     - run: node ace migration:run
     - run: node ace build --production
     - run: cp .env build/
