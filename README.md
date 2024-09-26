@@ -1,6 +1,12 @@
 # blogger-app
 
-This Blogger web app uses TypeScript (programming language), AdonisJS (backend & frontend) & PostgreSQL (database). A guest is able to read existing blogs and sign up for an account. A logged in user can create new blogs, delete their own blogs and also like/dislike the blogs of their choice.
+This Blogger web app uses TypeScript (programming language), AdonisJS (backend & frontend) & PostgreSQL (database). A guest is able to read existing blogs and sign up for an account. A logged-in user can create new blogs, delete their own blogs, and also like/dislike the blogs of their choice.
+
+------
+
+# Follow Our Development Progress
+
+We are managing the SDLC, testing, and ongoing maintenance of our Blogger Web App using [GitHub Project Board]([https://github.com/your-repo/project-board-url](https://github.com/users/arpitthool/projects/1/views/1)). Check it out to stay updated on what’s next and what's in progress!
 
 ------
 
