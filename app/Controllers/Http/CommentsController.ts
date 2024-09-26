@@ -1,4 +1,5 @@
 import Comment from "App/Models/Comment"
+import User from "App/Models/User"
 
 /**
  * CommentsController
@@ -13,7 +14,7 @@ export default class CommentsController {
      */
     public async store({params, request, auth, response}){
         // Get the authenticated user
-        const user = auth.user
+        const authUser = auth.user
 
         // Extract blog ID from URL
         const blogId = params.blog_id
@@ -21,11 +22,15 @@ export default class CommentsController {
         // Extract comment content from the request
         const commentContent = request.input('content')
 
+        // get user object using user id
+        const user = User.findByOrFail('id', authUser?.id)
+
         // Create a new comment in the database
         await Comment.create({
-            userId: user?.id,
+            userId: (await user).id,
             blogId: blogId,
             content: commentContent,
+            username: (await user).name,
         })
 
         // Redirect back to the previous page

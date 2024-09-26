@@ -30,6 +30,21 @@ export default class BlogsController {
     }
 
     /**
+     * index method to fetch blogs that belong to user with given id
+    */
+    public async getUserBlogs({view, params} : HttpContextContract) {
+
+        // get user by id
+        const user = await User.findByOrFail('id', params.id)
+        
+        // fecth all blogs belonging to user
+        const blogs = await user.related('blogs').query()
+
+        // pass blogs to view
+        return view.render('blogs/userIndex', { blogs })
+    }
+
+    /**
      * store : method to vlaidate Blog data and store Blog into database OR show appropriate errors
      *
      * NOTE : if we are performing an async operation in method then we add async to method definition

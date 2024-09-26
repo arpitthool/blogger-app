@@ -21,10 +21,12 @@
 
                                     {{--  show delete button  --}}
                                     {{--  here we are using method spoofing  --}}
-                                    <form action="{{ `/blog/${blog.id}?_method=DELETE` }}" method="post">
-                                        {{ csrfField() }}
-                                        <button type="submit" class="button delete is-danger"></button>
-                                    </form>
+                                    @if(auth.isLoggedIn && auth.user?.id == blog.userId )
+                                        <form action="{{ `/blog/${blog.id}?_method=DELETE` }}" method="post">
+                                            {{ csrfField() }}
+                                            <button type="submit" class="button delete is-danger"></button>
+                                        </form>
+                                    @endif
                                     
                                 </header>
 

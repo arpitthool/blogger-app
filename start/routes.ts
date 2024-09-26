@@ -63,6 +63,9 @@ Route.group(() => {
 // route to get blog with specified id
 Route.get('/blog/:id', 'BlogsController.getBlog')
 
+// route to get all blogs written by user (specified by id)
+Route.get('/user/:id', 'BlogsController.getUserBlogs')
+
 
 /**
  * AUTH ROUTES

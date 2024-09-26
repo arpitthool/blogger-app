@@ -16,6 +16,9 @@ export default class Comment extends BaseModel {
   @column()
   public content: string
 
+  @column()
+  public username: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

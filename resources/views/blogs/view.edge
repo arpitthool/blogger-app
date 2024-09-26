@@ -41,6 +41,8 @@
                         <div class="card">
                             <div class="card-content">
                                 {{ comment.content }}
+                                <p style="text-align: right;">-- <a href="/user/{{ comment.userId }}">{{comment.username}}</a> </p>
+
                             </div>
                             @if(auth.isLoggedIn && auth.user?.id == comment.userId)
                                 <form action="/comment/{{ comment.id }}?_method=DELETE" method="post">
