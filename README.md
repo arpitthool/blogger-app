@@ -6,7 +6,7 @@ This Blogger web app uses TypeScript (programming language), AdonisJS (backend &
 
 # Follow Our Development Progress
 
-We are managing the SDLC, testing, and ongoing maintenance of our Blogger Web App using [GitHub Project Board]([https://github.com/your-repo/project-board-url](https://github.com/users/arpitthool/projects/1/views/1)). Check it out to stay updated on what’s next and what's in progress!
+We are managing the SDLC, testing, and ongoing maintenance of our Blogger Web App using [GitHub Project Board](https://github.com/your-repo/project-board-url). Check it out to stay updated on what’s next and what's in progress!
 
 ------
 
