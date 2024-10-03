@@ -24,8 +24,6 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 
 ## Install modules
 
-    cd backend
-
     npm install
 
 ## Make sure that postgresql is setup and running
@@ -46,6 +44,10 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
     PG_PASSWORD=password
     PG_DB_NAME=postgres
 
+Generate the APP_KEY and save it inside the .env file.
+
+    node ace generate:key
+    
 ## run migrations
 
     node ace migration:run
