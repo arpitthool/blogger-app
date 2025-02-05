@@ -82,6 +82,7 @@ jobs:
     # Application build steps
     - run: npm ci
     - run: node ace migration:run
+    - run: node ace db:seed
     - run: node ace build --production
     - run: cp .env build/
     - name: Install production dependencies
