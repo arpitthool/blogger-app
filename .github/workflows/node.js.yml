@@ -11,15 +11,44 @@ jobs:
         node-version: [20.x]
     steps:
     - uses: actions/checkout@v4
+    
+    # Install Node.js and npm
+    - name: Install Node.js and npm
+      run: |
+        sudo apt install npm
+    
+    # Install PostgreSQL
+    - name: Install PostgreSQL
+      run: |
+        sudo apt install -y postgresql postgresql-contrib
+    
+    # Start PostgreSQL service
+    - name: Start PostgreSQL service
+      run: |
+        sudo systemctl start postgresql.service
+
+    # Setup PostgreSQL database and user
+    - name: Setup PostgreSQL
+      run: |
+        sudo -u postgres psql -c "CREATE DATABASE postgres;" || true
+        sudo -u postgres psql -c "CREATE USER postgres WITH ENCRYPTED PASSWORD 'password';" || true
+        sudo -u postgres psql -c "ALTER USER postgres WITH ENCRYPTED PASSWORD 'password';"
+        sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;"
+
+    # Setup Node.js
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    
+    # Application build steps
     - run: npm ci
     - run: node ace migration:run
     - run: node ace build --production
     - run: cp .env build/
-    - run: cd build
-    - run: npm ci --production
+    - name: Install production dependencies
+      run: npm ci --production
+      working-directory: ./build
     - run: pm2 restart server
+      working-directory: ./build
