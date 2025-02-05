@@ -73,7 +73,7 @@ jobs:
       run: |
         if ! command -v pm2 &> /dev/null; then
           echo "PM2 not found. Installing..."
-          sudo npm install -g pm2
+          sudo npm i -g pm2
         else
           echo "PM2 is already installed"
           pm2 --version
@@ -87,5 +87,14 @@ jobs:
     - name: Install production dependencies
       run: npm ci --production
       working-directory: ./build
-    - run: pm2 restart server
+    # PM2 deployment step
+    - name: Deploy with PM2
       working-directory: ./build
+      run: |
+        if pm2 list | grep -q "server"; then
+          echo "Server process exists, restarting..."
+          pm2 restart server
+        else
+          echo "Server process not found, starting new instance..."
+          pm2 start index.js --name server  # or whatever your main file is
+        fi
