@@ -45,12 +45,20 @@ jobs:
         sudo systemctl status postgresql.service
 
     # Setup PostgreSQL database and user (if not exists)
-    - name: Setup PostgreSQL
+    - name: Setup PostgreSQL and run initial seeder
       run: |
-        if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='postgres'" | grep -q 1; then
+        # Check if database exists
+        DB_EXISTS=$(sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='postgres'" | grep -q 1 && echo "yes" || echo "no")
+        
+        if [ "$DB_EXISTS" = "no" ]; then
+          echo "Database 'postgres' does not exist. Creating..."
           sudo -u postgres psql -c "CREATE DATABASE postgres;"
+          
+          # Flag to indicate we need to run the seeder
+          echo "NEED_SEEDING=true" >> $GITHUB_ENV
         else
           echo "Database 'postgres' already exists"
+          echo "NEED_SEEDING=false" >> $GITHUB_ENV
         fi
         
         if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='postgres'" | grep -q 1; then
@@ -82,13 +90,27 @@ jobs:
     # Application build steps
     - run: npm ci
     - run: node ace migration:run
-    - run: node ace db:seed
+    # Run seeder only if database was newly created
+    - name: Run seeder if needed
+      run: |
+        if [ "$NEED_SEEDING" = "true" ]; then
+          echo "Running database seeder..."
+          node ace db:seed
+        else
+          echo "Skipping seeder as database already existed"
+        fi
     - run: node ace build --production
     - run: cp .env build/
     - name: Install production dependencies
       run: npm ci --production
       working-directory: ./build
-    # PM2 deployment step
     - name: Deploy with PM2
       working-directory: ./build
-      run: pm2 start server.js
+      run: |
+        if pm2 list | grep -q "server"; then
+          echo "Server process exists, restarting..."
+          pm2 restart server
+        else
+          echo "Server process not found, starting new instance..."
+          pm2 start server.js
+        fi
