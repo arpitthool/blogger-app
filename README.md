@@ -28,7 +28,7 @@ This is a web Blog app built using AdoniJS TyperScript. Edge templates are used 
 
 ## Make sure that postgresql is setup and running
 
-## create .env file in the root folder and configure it according to your database credentials
+## create .env file in the root folder and configure it according to your database credentials.
 
     PORT=3333
     HOST=0.0.0.0
