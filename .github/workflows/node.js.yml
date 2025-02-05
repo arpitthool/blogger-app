@@ -90,11 +90,4 @@ jobs:
     # PM2 deployment step
     - name: Deploy with PM2
       working-directory: ./build
-      run: |
-        if pm2 list | grep -q "server"; then
-          echo "Server process exists, restarting..."
-          pm2 restart server
-        else
-          echo "Server process not found, starting new instance..."
-          pm2 start index.js --name server  # or whatever your main file is
-        fi
+      run: pm2 start server.js
