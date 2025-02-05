@@ -68,6 +68,17 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
+    # Check and Install PM2 if not present
+    - name: Check and Install PM2
+      run: |
+        if ! command -v pm2 &> /dev/null; then
+          echo "PM2 not found. Installing..."
+          sudo npm install -g pm2
+        else
+          echo "PM2 is already installed"
+          pm2 --version
+        fi
+    
     # Application build steps
     - run: npm ci
     - run: node ace migration:run
