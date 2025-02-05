@@ -1,38 +1,64 @@
 name: Node.js CI
-
 on:
   push:
     branches: [ "master" ]
 jobs:
   build:
-    runs-on: aws-t2-micro
+    runs-on: self-hosted
     strategy:
       matrix:
         node-version: [20.x]
     steps:
     - uses: actions/checkout@v4
     
-    # Install Node.js and npm
-    - name: Install Node.js and npm
+    # Check and Install Node.js and npm if not present
+    - name: Check and Install Node.js and npm
       run: |
-        sudo apt install npm
+        if ! command -v npm &> /dev/null; then
+          echo "npm not found. Installing Node.js and npm..."
+          sudo apt install npm
+        else
+          echo "npm is already installed"
+          npm --version
+        fi
     
-    # Install PostgreSQL
-    - name: Install PostgreSQL
+    # Check and Install PostgreSQL if not present
+    - name: Check and Install PostgreSQL
       run: |
-        sudo apt install -y postgresql postgresql-contrib
+        if ! command -v psql &> /dev/null; then
+          echo "PostgreSQL not found. Installing..."
+          sudo apt install -y postgresql postgresql-contrib
+        else
+          echo "PostgreSQL is already installed"
+          psql --version
+        fi
     
-    # Start PostgreSQL service
+    # Start PostgreSQL service (only if not already running)
     - name: Start PostgreSQL service
       run: |
-        sudo systemctl start postgresql.service
+        if ! sudo systemctl is-active --quiet postgresql; then
+          echo "Starting PostgreSQL service..."
+          sudo systemctl start postgresql.service
+        else
+          echo "PostgreSQL service is already running"
+        fi
+        sudo systemctl status postgresql.service
 
-    # Setup PostgreSQL database and user
+    # Setup PostgreSQL database and user (if not exists)
     - name: Setup PostgreSQL
       run: |
-        sudo -u postgres psql -c "CREATE DATABASE postgres;" || true
-        sudo -u postgres psql -c "CREATE USER postgres WITH ENCRYPTED PASSWORD 'password';" || true
-        sudo -u postgres psql -c "ALTER USER postgres WITH ENCRYPTED PASSWORD 'password';"
+        if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname='postgres'" | grep -q 1; then
+          sudo -u postgres psql -c "CREATE DATABASE postgres;"
+        else
+          echo "Database 'postgres' already exists"
+        fi
+        
+        if ! sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='postgres'" | grep -q 1; then
+          sudo -u postgres psql -c "CREATE USER postgres WITH ENCRYPTED PASSWORD 'password';"
+        else
+          sudo -u postgres psql -c "ALTER USER postgres WITH ENCRYPTED PASSWORD 'password';"
+        fi
+        
         sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;"
 
     # Setup Node.js
