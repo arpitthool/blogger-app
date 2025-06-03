@@ -64,7 +64,7 @@ Generate the APP_KEY and save it inside the .env file.
 
 # DATABASE SETUP
 
-Note : Here are the installation and setup instruction for PostgreSQL service for Ubuntu
+Here are the installation and setup instruction for PostgreSQL service for Ubuntu
 
 ## Install postgresql
  
