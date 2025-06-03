@@ -79,20 +79,12 @@ jobs:
     # Check and Install PM2 if not present
     - name: Check and Install PM2
       run: |
-        # if ! command -v pm2 &> /dev/null; then
-        #   echo "PM2 not found. Installing..."
-        #   sudo npm i -g pm2
-        # else
-        #   echo "PM2 is already installed"
-        #   pm2 --version
-        # fi
-
-        if pm2 describe server > /dev/null 2>&1; then
-          echo "Server process exists, restarting..."
-          pm2 restart server
+        if ! command -v pm2 &> /dev/null; then
+          echo "PM2 not found. Installing..."
+          sudo npm i -g pm2
         else
-          echo "Server process not found, starting new instance..."
-          pm2 start server.js --name server
+          echo "PM2 is already installed"
+          pm2 --version
         fi
     
     # Application build steps
@@ -115,10 +107,18 @@ jobs:
     - name: Deploy with PM2
       working-directory: ./build
       run: |
-        if pm2 list | grep -q "server"; then
+        # if pm2 list | grep -q "server"; then
+        #   echo "Server process exists, restarting..."
+        #   pm2 restart server
+        # else
+        #   echo "Server process not found, starting new instance..."
+        #   pm2 start server.js
+        # fi
+
+        if pm2 describe server > /dev/null 2>&1; then
           echo "Server process exists, restarting..."
           pm2 restart server
         else
           echo "Server process not found, starting new instance..."
-          pm2 start server.js
+          pm2 start server.js --name server
         fi
